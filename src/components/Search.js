@@ -1,20 +1,19 @@
 import React, { Component } from 'react'
-
-import Header from './Header'
-import Search from './Search'
-import { fetchCoords } from '../actions'
 import { connect } from 'react-redux'
 
-class App extends Component {
+//import { fetchBusinesses } from '../actions'
+
+export class Search extends Component {
     componentDidMount() {
-        this.props.fetchCoords()
+        //this.props.fetchBusinesses()
     }
+    
 
     render() {
         return (
-            <div className="ui container">
-                <Header />
-                <Search />
+            <div>
+                search
+                {this.props.location.lat}
             </div>
         )
     }
@@ -26,7 +25,7 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    {
-        fetchCoords
-    }
-)(App)
+    // {
+    //     fetchBusinesses
+    // }
+)(Search)

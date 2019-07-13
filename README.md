@@ -66,3 +66,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+
+###APP NOTES
+Be sure to add a .env file with a Yelp API token. Do not host this app publicly as this token will be publicly exposed in the React build. Yelp token can be generated here - https://www.yelp.com/developers.
