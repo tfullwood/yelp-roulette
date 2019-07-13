@@ -15,7 +15,7 @@ export const fetchCoords = () => {
     return async (dispatch) => {
         await window.navigator.geolocation.getCurrentPosition(
             position => {
-                dispatch({ type: 'FETCH_COORDS', payload: { lat: position.coords.latitude, long: position.coords.longitude } })
+                dispatch({ type: 'FETCH_LOCATION', payload: { lat: position.coords.latitude, long: position.coords.longitude } })
             },
             //TODO - HANDLE ERRORS A LITTLE MORE ELEGANTLY
             err => console.log('failure')
