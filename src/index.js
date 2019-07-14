@@ -1,6 +1,3 @@
-//NOTE IN CASE I FORGET
-    //DONT HOST THIS PROJECT ANYWHERE - IM USING A YELP TOKEN THATS PUBLISHING DIRECTLY TO THE BUILD
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
