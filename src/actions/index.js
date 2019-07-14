@@ -2,16 +2,16 @@ import yelp from '../apis/yelp'
 
 export const fetchBusinesses = (params) => {
     return async (dispatch) => {
-        const res = await yelp.get('/businesses/search', {
+        const res = await yelp.get('/businesses', {
             params: {
                 term: params.term,
-                latitude: params.lat,
-                longitude: params.long,
-                radius: 8000 //set to meters, 8000 is roughly 5 miles
+                lat: params.lat,
+                long: params.long,
+                radius: params.radius || 8000 //set to meters, 8000 is roughly 5 miles
             }
         })
 
-        dispatch({ type: 'FETCH_BUSINESSES', payload: res.data })
+        dispatch({ type: 'FETCH_BUSINESSES', payload: res.data.businesses })
     }
 }
 

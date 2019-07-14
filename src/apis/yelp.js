@@ -1,8 +1,5 @@
 import axios from 'axios'
 
 export default axios.create({
-    baseURL: 'https://api.yelp.com/v3',
-    headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_YELP_TOKEN}`
-    }
+    baseURL: `${process.env.REACT_APP_LOCAL_SERVER_URL}`
 })

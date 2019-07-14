@@ -1,12 +1,15 @@
 const express = require('express')
 const axios = require('axios')
+const cors = require('cors')
 
 require('dotenv').config()
 
 var app = express()
+app.use(cors())
 
 app.all('/*', function(req, res, next) {
     //Will likely need to set some headers
+    res.setHeader("Access-Control-Allow-Origin", "*")
     next()
 })
 
@@ -19,7 +22,7 @@ app.get('/businesses', async function(req, res) {
         term: req.query.term || 'restaurant',
         lat: req.query.lat,
         long: req.query.long,
-        radius: req.query.radius
+        radius: req.query.radius || 8000
     }
 
     try {
