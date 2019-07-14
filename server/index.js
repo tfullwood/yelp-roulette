@@ -18,20 +18,14 @@ app.get('/businesses', async function(req, res) {
         return res.status(422).json({error: "Latitude and Longitude are required parameters"})
     }
     
-    var params = {
-        term: req.query.term || 'restaurant',
-        lat: req.query.lat,
-        long: req.query.long,
-        radius: req.query.radius || 8000
-    }
-
     try {
         const businesses = await axios.get('https://api.yelp.com/v3/businesses/search', {
             params: {
-                term: params.term || 'restaurants',
-                latitude: params.lat,
-                longitude: params.long,
-                radius: params.radius || 8000
+                term: req.query.term || 'restaurants',
+                latitude: req.query.lat,
+                longitude: req.query.long,
+                categories: req.query.categories || '',
+                radius: req.query.radius || 8000
             }, headers: {
                 Authorization: `Bearer ${process.env.YELP_TOKEN}`
             }

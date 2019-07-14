@@ -69,5 +69,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 
-###APP NOTES
+# APP NOTES
 Be sure to add a .env file with a Yelp API token. Do not host this app publicly as this token will be publicly exposed in the React build. Yelp token can be generated here - https://www.yelp.com/developers.
+
+## Issues / Features
+Need to fix bug if no image is returned - this restaurant id to duplicate = ESmQNZBzmVUUWFwvkF5zpA or these coords - lat=37.774929&long=-122.419416

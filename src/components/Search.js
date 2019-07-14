@@ -1,45 +1,73 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Input, Dropdown, Button, Grid, Segment, Form } from 'semantic-ui-react'
 
 import '../styles/Search.css'
-import categories from '../apis/yelpCategories.json'
+import categories from '../apis/yelpCategories.json'  
 
 export class Search extends Component {
+    constructor(props) {
+        super(props)
 
+        this.state = { catList: [], categories: [], location: '' }
+    }
+
+    componentDidMount() {
+        const catList = []
+        categories.forEach((category) => {
+            if (category.parents.includes('restaurants')) {
+                var newObj = {
+                    key: category.alias,
+                    value: category.alias,
+                    text: category.title
+                }
+                
+                catList.push(newObj)
+                return true
+            }
+            return false
+        })
+
+        this.setState({catList})
+    }
+    
     rouletteOnClick = () => {
         return alert("I haven't build this yet...")
     }
 
+    handleFormChange = (e, { name, value }) => {
+        this.setState({ [name]: value })
+    }
+
+    onFormSubmit = (e) => {
+        e.preventDefault()
+
+        //this.props.onSearchSubmit(this.state.categories, this.state.location)
+        this.props.onSearchSubmit(this.state.categories, this.state.location)
+    }
+
     render() {
-        //will use this to display the categories drop down list
-        // var restaurantCats = categories.filter(category => {return category.parents.includes('restaurants')})
-        
         return (
             <div className="x-search">
-                <div className="ui grid segment">
-                    <div className="ui input six wide column">
-                        <div className="ui fluid search selection dropdown">
-                            <input type="hidden" name="category" />
-                            <i className="dropdown icon"></i>
-                            <div className="default text">Select Category</div>
-                            <div className="menu">
-                                <div className="item" data-value="abc">ABC</div>
-                                <div className="item" data-value="def">DEF</div>
-                                <div className="item" data-value="ghi">GHI</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="ui input six wide column">
-                        <input type="text" placeholder="Location" />
-                    </div>
-
-                    <div className="right floated right aligned four wide column">
-                        <button className="ui button">Search</button>
-                        <button className="ui primary button" onClick={this.rouletteOnClick}>Roulette</button>
-                    </div>
-                </div>
-                
-                <br /><p onClick={this.props.onClick}>Search</p>
+                <Form onSubmit={this.onFormSubmit}>
+                    <Segment>
+                        <Grid>
+                            <Grid.Column mobile={16} tablet={8} computer={6}>
+                                <Dropdown placeholder='Categories' fluid multiple search selection options={this.state.catList} onChange={this.handleFormChange} name="categories"  />
+                            </Grid.Column>
+                            <Grid.Column mobile={16} tablet={8} computer={6}>
+                                {/* <Input placeholder='Search...' name="location" onChange={this.handleFormChange} /> */}
+                                Currently only have functionality for lat/long based searches. Add location input later
+                            </Grid.Column>
+                            <Grid.Column mobile={8} tablet={8} computer={2} floated="right">
+                                <Button secondary onClick={this.onFormSubmit}>Search</Button>
+                            </Grid.Column>
+                            <Grid.Column mobile={8} tablet={8} computer={2} floated="right">
+                                <Button primary onClick={this.rouletteOnClick}>Roulette</Button>
+                            </Grid.Column>
+                        </Grid>
+                    </Segment>
+                </Form>
             </div>
         )
     }

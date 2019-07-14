@@ -7,10 +7,11 @@ export const fetchBusinesses = (params) => {
                 term: params.term,
                 lat: params.lat,
                 long: params.long,
+                categories: params.categories || '',
                 radius: params.radius || 8000 //set to meters, 8000 is roughly 5 miles
             }
         })
-
+        
         dispatch({ type: 'FETCH_BUSINESSES', payload: res.data.businesses })
     }
 }

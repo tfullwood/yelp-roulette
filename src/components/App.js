@@ -11,21 +11,15 @@ class App extends Component {
         this.props.fetchCoords()
     }
 
-    onSearchClick = () => {
-        const fetchBizParams = {
-            term: 'restaurant',
-            lat: 40.7608,
-            long: -111.9
-        }
-
-        this.props.fetchBusinesses(fetchBizParams)
+    onSearchSubmit = (categories = [], location = '') => {
+        this.props.fetchBusinesses({term: 'restaurant', lat: this.props.location.lat, long: this.props.location.long, categories: categories.join(',')})
     }
 
     render() {
         return (
             <div className="ui container">
                 <Header />
-                <Search onClick={this.onSearchClick} />
+                <Search onSearchSubmit={this.onSearchSubmit} />
                 <BusinessList businesses={this.props.businesses} />
             </div>
         )
