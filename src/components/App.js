@@ -12,6 +12,11 @@ class App extends Component {
     }
 
     onSearchSubmit = (categories = [], location = '') => {
+        if (this.props.location.lat === null || this.props.location.long === null) {
+            //TODO handle this more elegantly - set error state and display an error notification
+            return alert('Please allow location so we can find restaurants near you.');
+        }
+
         this.props.fetchBusinesses({term: 'restaurant', lat: this.props.location.lat, long: this.props.location.long, categories: categories.join(',')})
     }
 

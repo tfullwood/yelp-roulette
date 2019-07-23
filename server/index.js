@@ -17,7 +17,7 @@ app.get('/businesses', async function(req, res) {
     if (!req.query.lat || !req.query.long) {
         return res.status(422).json({error: "Latitude and Longitude are required parameters"})
     }
-    
+
     try {
         const businesses = await axios.get('https://api.yelp.com/v3/businesses/search', {
             params: {
@@ -35,7 +35,7 @@ app.get('/businesses', async function(req, res) {
     } catch (e) {
         console.log(e);
         
-        return res.status(422).json({error: "Yelp API request failure. IDK what happened check the logs"})
+        return res.status(500).json({error: "Yelp API request failure. IDK what happened check the logs"})
     }
 })
 

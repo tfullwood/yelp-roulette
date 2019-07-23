@@ -70,7 +70,26 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 # APP NOTES
-Be sure to add a .env file with a Yelp API token. Do not host this app publicly as this token will be publicly exposed in the React build. Yelp token can be generated here - https://www.yelp.com/developers.
+Be sure to add a .env file with a Yelp API token to the root of the server directory.
+
+Add a .env file to the root of the project directory to reference your local server url.
 
 ## Issues / Features
 Need to fix bug if no image is returned - this restaurant id to duplicate = ESmQNZBzmVUUWFwvkF5zpA or these coords - lat=37.774929&long=-122.419416
+
+Need to actually handle errors
+
+Fix segment element's width on the search component on mobile
+
+Fix international maps link - link doesn't actually render a map outside the us
+
+### Future
+Add routes and other pages
+
+Add tests
+
+Add location functionality (either lat/long or location searches)
+
+Pagination
+
+Considering adding hours / is open functionality as well
