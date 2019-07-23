@@ -24,11 +24,25 @@ export const fetchBusinesses = (params) => {
             dispatch({ type: 'FETCH_BUSINESSES', payload: res.data.businesses })
         } catch (err) {
             //TODO - need to actually handle this...
-            console.log('NOOOOO, something happened...', err)
+            console.log(err)
             dispatch({ type: 'doabsolutelynothing' })
         }
 
         
+    }
+}
+
+export const fetchBusiness = (id) => {
+    //TODO - add try and catch blocks and handle exceptions
+
+    return async (dispatch) => {
+        const res = await yelp.get('/business', {
+            params: {
+                id
+            }
+        })
+        
+        dispatch({ type: 'FETCH_BUSINESS', payload: res.data })
     }
 }
 

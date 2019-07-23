@@ -39,4 +39,20 @@ app.get('/businesses', async function(req, res) {
     }
 })
 
+app.get('/business', async function(req, res) {
+    try {
+        const businesses = await axios.get(`https://api.yelp.com/v3/businesses/${req.query.id}`, {
+            headers: {
+                Authorization: `Bearer ${process.env.YELP_TOKEN}`
+            }
+        })
+
+        return res.status(200).json(businesses.data)
+    } catch (e) {
+        console.log(e);
+        
+        return res.status(500).json({error: "Yelp API request failure. IDK what happened check the logs"})
+    }
+})
+
 app.listen(3001)
