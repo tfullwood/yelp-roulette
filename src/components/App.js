@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Header from './Header'
 import Search from './Search'
 import { fetchCoords, fetchBusinesses } from '../actions'
-import { BusinessList } from './BusinessList';
+import BusinessList from './BusinessList';
+import Business from './Business'
 
 class App extends Component {
     componentDidMount() {
@@ -23,9 +25,16 @@ class App extends Component {
     render() {
         return (
             <div className="ui container">
-                <Header />
-                <Search onSearchSubmit={this.onSearchSubmit} />
-                <BusinessList businesses={this.props.businesses} />
+                <BrowserRouter>
+                    <div>
+                        <Header />
+                        <Search onSearchSubmit={this.onSearchSubmit} />
+                        <Switch>
+                            <Route path="/" exact component={BusinessList} />
+                            <Route path="/business/:id" exact component={Business} />
+                        </Switch>
+                    </div>
+                </BrowserRouter>
             </div>
         )
     }

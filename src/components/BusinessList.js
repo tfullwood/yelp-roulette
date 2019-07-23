@@ -4,7 +4,7 @@ import { Divider, Header } from 'semantic-ui-react'
 
 import BusinessCard from './BusinessCard'
 
-export class BusinessList extends Component {
+class BusinessList extends Component {
     render() {
         let content
         if (this.props.businesses.length === 0) {
