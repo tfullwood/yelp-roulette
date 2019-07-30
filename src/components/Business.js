@@ -32,8 +32,6 @@ export class Business extends Component {
                 <Divider horizontal>
                     <Header as='h2'>{business.name}</Header>
                 </Divider>
-                
-
             </div>
         )
     }
