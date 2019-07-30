@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Divider, Header } from 'semantic-ui-react'
 
 import { fetchBusiness } from '../actions'
+import Loader from './Loader'
 import history from '../history'
 
 export class Business extends Component {
@@ -16,12 +17,14 @@ export class Business extends Component {
     }
 
     renderPage = () => {
-        if (!this.props.business) {
+        const business = this.props.business
+
+        if (!business.id) {
             return (
-                <div>The page is loading...</div>
+                <Loader status={true} />
             )
         }
-        const business = this.props.business
+        
         console.log(business);
         
         return (
