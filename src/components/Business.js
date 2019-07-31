@@ -39,7 +39,7 @@ export class Business extends Component {
                     <Grid.Column mobile={16} tablet={8} computer={8} style={{padding: "0 1rem", height: "500px", overflow: "hidden"}}>
                         {business.image_url ? 
                             <img src={business.image_url} alt={business.name} /> :
-                            <Placeholder>
+                            <Placeholder style={{height:"500px", maxWidth: "100%"}}>
                                 <Placeholder.Image />
                             </Placeholder>
                         }
