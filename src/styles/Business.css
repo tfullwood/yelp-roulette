@@ -1,0 +1,12 @@
+.business-body img {
+    max-width: 100%;
+}
+
+.business-details .details-right {
+    text-align: right;
+}
+
+.business-details .details-imp {
+    font-size: 1em;
+    font-weight: bold;
+}

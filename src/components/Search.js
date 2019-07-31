@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Input, Dropdown, Button, Grid, Segment, Form } from 'semantic-ui-react'
+import { Dropdown, Button, Grid, Segment, Form } from 'semantic-ui-react'
 
 import '../styles/Search.css'
-import categories from '../apis/yelpCategories.json'  
+import categories from '../apis/yelpCategories.json'
+
+import history from '../history'
 
 export class Search extends Component {
     constructor(props) {
@@ -41,9 +43,8 @@ export class Search extends Component {
 
     onFormSubmit = (e) => {
         e.preventDefault()
-
-        //this.props.onSearchSubmit(this.state.categories, this.state.location)
         this.props.onSearchSubmit(this.state.categories, this.state.location)
+        history.push('/')
     }
 
     render() {
