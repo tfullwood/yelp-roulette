@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 
 import businessesReducer from './businessesReducer'
-import locReducer from './locReducer'
 import businessReducer from './businessReducer'
+import searchReducer from './searchReducer'
 
 export default combineReducers({
     businesses: businessesReducer,
-    location: locReducer,
-    business: businessReducer
+    business: businessReducer,
+    search: searchReducer
 })

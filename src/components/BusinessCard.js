@@ -20,6 +20,7 @@ const BusinessCard = ({ business }) => {
             </div>
             <div className="extra content">
             <span className="right floated">
+                {/* Consider mapping through the display address array and concat to a link string, might be more accurate */}
                 <a href={encodeURI(`https://google.com/maps/place/${business.location.address1}+${business.location.city}+${business.location.state}+${business.location.zip_code}+${business.location.country}`)} target="_blank" rel="noopener noreferrer">Google Maps </a>
                 |
                 <a href={`${business.url}`} target="_blank" rel="noopener noreferrer"> Yelp</a>

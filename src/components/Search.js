@@ -2,16 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Dropdown, Button, Grid, Segment, Form } from 'semantic-ui-react'
 
-import '../styles/Search.css'
+import { fetchSearch } from '../actions'
+//Pulling this data locally, unnecessary to call Yelp API for data that rarely changes
 import categories from '../apis/yelpCategories.json'
 
+import '../styles/Search.css'
 import history from '../history'
 
 export class Search extends Component {
     constructor(props) {
         super(props)
 
-        this.state = { catList: [], categories: [], location: '' }
+        //No need to store in redux, only used on this component
+        this.state = { catList: [] }
     }
 
     componentDidMount() {
@@ -38,12 +41,12 @@ export class Search extends Component {
     }
 
     handleFormChange = (e, { name, value }) => {
-        this.setState({ [name]: value })
+        this.props.fetchSearch({ [name]: value })
     }
 
     onFormSubmit = (e) => {
         e.preventDefault()
-        this.props.onSearchSubmit(this.state.categories, this.state.location)
+        this.props.onSearchSubmit(this.props.search.categories)
         history.push('/')
     }
 
@@ -76,8 +79,10 @@ export class Search extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        location: state.location
+        search: state.search
     }
 }
 
-export default connect(mapStateToProps)(Search)
+export default connect(mapStateToProps, {
+    fetchSearch
+})(Search)

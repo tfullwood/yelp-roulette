@@ -83,3 +83,4 @@ Add a .env file to the root of the project directory to reference your local ser
 * Add location functionality (either lat/long or location searches)
 * Pagination
 * Considering adding hours / is open functionality as well
+* Add loading spinner to the business list - on fetchBusinesses set spinner

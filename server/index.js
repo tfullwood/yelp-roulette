@@ -25,7 +25,9 @@ app.get('/businesses', async function(req, res) {
                 latitude: req.query.lat,
                 longitude: req.query.long,
                 categories: req.query.categories || '',
-                radius: req.query.radius || 8000
+                radius: req.query.radius || 8000,
+                limit: req.query.limit || 15,
+                offset: req.query.offset || 0
             }, headers: {
                 Authorization: `Bearer ${process.env.YELP_TOKEN}`
             }
