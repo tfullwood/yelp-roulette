@@ -61,7 +61,7 @@ export class Search extends Component {
                             </Grid.Column>
                             <Grid.Column mobile={16} tablet={8} computer={6}>
                                 {/* <Input placeholder='Search...' name="location" onChange={this.handleFormChange} /> */}
-                                Currently only have functionality for lat/long based searches. Add location input later
+                                {/* Currently only have functionality for lat/long based searches. Add location input later */}
                             </Grid.Column>
                             <Grid.Column mobile={8} tablet={8} computer={2} floated="right">
                                 <Button secondary onClick={this.onFormSubmit}>Search</Button>

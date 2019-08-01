@@ -4,9 +4,11 @@ import { Router, Route, Switch } from 'react-router-dom'
 
 import Header from './Header'
 import Search from './Search'
-import { fetchCoords, fetchBusinesses } from '../actions'
-import BusinessList from './BusinessList';
 import Business from './Business'
+import BusinessList from './BusinessList'
+import About from './About'
+import Contact from './Contact'
+import { fetchCoords, fetchBusinesses } from '../actions'
 import history from '../history'
 
 class App extends Component {
@@ -33,6 +35,8 @@ class App extends Component {
                         <Switch>
                             <Route path="/" exact component={BusinessList} onSearchSubmit={this.onSearchSubmit} />
                             <Route path="/business/:id" exact component={Business} />
+                            <Route path="/about" exact component={About} />
+                            <Route path="/contact" exact component={Contact} />
                         </Switch>
                     </div>
                 </Router>

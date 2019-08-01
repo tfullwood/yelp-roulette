@@ -1,86 +1,35 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Yelp Roulette
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+### Prerequisites
+Get a [Yelp developer](https://www.yelp.com/developers) account and sign up for a [Mapbox account](https://www.mapbox.com/).
 
-### `npm start`
+### Installing
+Navigate to project root and run `yarn install` to download dependencies. Rename .env.example and add your Express server url and Mapbox token. Navigate to the server directory and run `yarn install`. Rename .env.example and add your Yelp token.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-# APP NOTES
-Be sure to add a .env file with a Yelp API token to the root of the server directory.
-
-Add a .env file to the root of the project directory to reference your local server url.
+Run `yarn start` to start the Express server. Open another terminal window and run `yarn start` from the project root to start the React app. The React app should now be available at [http://localhost:3000](http://localhost:3000) and the Express server at [http://localhost:3001](http://localhost:3001).
 
 ## Issues / Features
-* Need to actually handle errors
+* Handle errors
+* Organize project and clean up
 * Fix segment element's width on the search component on mobile
-* Fix international maps link - link doesn't actually render a map outside the us
-* Fix bug with the Map component state, it persists the previous map coords
+* Fix link to Google Maps for international restaurants, not currently functional
+* Fix bug with the Mapbox component state, it persists the previous map coords
 
 ### Future
 * Add tests
 * Add location functionality (either lat/long or location searches)
-* Pagination
-* Considering adding hours / is open functionality as well
-* Add loading spinner to the business list - on fetchBusinesses set spinner
+* Considering adding hours / is open and additional detail to the Business component
+* Add loading spinner on search
+
+## Built With
+* [Create React App](https://github.com/facebook/create-react-app)
+* [React](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [Semantic UI](https://react.semantic-ui.com)
+* [Yelp](https://www.yelp.com/developers)
+* [Mapbox](https://www.mapbox.com/)
+
+##Authors
+* [Trevor Fullwood](https://github.com/tfullwood)
