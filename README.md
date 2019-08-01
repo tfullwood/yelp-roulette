@@ -31,5 +31,5 @@ Run `yarn start` to start the Express server. Open another terminal window and r
 * [Yelp](https://www.yelp.com/developers)
 * [Mapbox](https://www.mapbox.com/)
 
-##Authors
+## Authors
 * [Trevor Fullwood](https://github.com/tfullwood)
