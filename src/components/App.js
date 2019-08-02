@@ -17,12 +17,16 @@ class App extends Component {
     }
 
     onSearchSubmit = (categories = []) => {
-        if (this.props.search.lat === null || this.props.search.long === null) {
+        if ((this.props.search.lat === null || this.props.search.long === null) && this.props.search.location == null) {
             //TODO handle this more elegantly - set error state and display an error notification
             return alert('Please allow location so we can find restaurants near you.');
         }
 
-        this.props.fetchBusinesses({term: 'restaurant', lat: this.props.search.lat, long: this.props.search.long, categories: this.props.search.categories.join(',')})
+        if (this.props.search.locationOverride) {
+            this.props.fetchBusinesses({term: 'restaurant', location: this.props.search.location, categories: this.props.search.categories.join(',')})
+        } else {
+            this.props.fetchBusinesses({term: 'restaurant', lat: this.props.search.lat, long: this.props.search.long, categories: this.props.search.categories.join(',')})
+        }
     }
 
     render() {

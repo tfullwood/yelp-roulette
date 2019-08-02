@@ -1,4 +1,4 @@
-export default (state = {location:'', lat:null,long:null,categories:[],limit:15,offset:0}, action) => {
+export default (state = {location:null, lat:null,long:null,categories:[],limit:15,offset:0}, action) => {
     switch (action.type) {
         case 'FETCH_SEARCH':
             let k = Object.keys(action.payload)
@@ -10,6 +10,8 @@ export default (state = {location:'', lat:null,long:null,categories:[],limit:15,
             })
 
             return returnState
+        case 'SET_LOC_OVERRIDE':
+            return { ...state, locationOverride: true }
         default:
             return state
     }

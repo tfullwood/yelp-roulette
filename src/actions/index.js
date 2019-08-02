@@ -13,8 +13,9 @@ export const fetchBusinesses = (params) => {
             const res = await yelp.get('/businesses', {
                 params: {
                     term: params.term || 'restaurant',
-                    lat: params.lat,
-                    long: params.long,
+                    lat: params.lat || '',
+                    long: params.long || '',
+                    location: params.location || '',
                     categories: params.categories || '',
                     radius: params.radius || 8000, //set to meters, 8000 is roughly 5 miles
                     limit: params.limit || 15,
@@ -51,8 +52,9 @@ export const fetchCoords = () => {
             position => {
                 dispatch({ type: 'FETCH_SEARCH', payload: { lat: position.coords.latitude, long: position.coords.longitude }})
             },
-            //TODO - HANDLE ERRORS A LITTLE MORE ELEGANTLY
-            err => console.log('failure')
+            err => {
+                dispatch({ type: 'SET_LOC_OVERRIDE' })
+            }
         );
     }
 }

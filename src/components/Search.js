@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Dropdown, Button, Grid, Segment, Form } from 'semantic-ui-react'
+import { Dropdown, Button, Grid, Segment, Form, Input } from 'semantic-ui-react'
 
 import { fetchSearch } from '../actions'
 //Pulling this data locally, unnecessary to call Yelp API for data that rarely changes
@@ -60,8 +60,7 @@ export class Search extends Component {
                                 <Dropdown placeholder='Categories' fluid multiple search selection options={this.state.catList} onChange={this.handleFormChange} name="categories"  />
                             </Grid.Column>
                             <Grid.Column mobile={16} tablet={8} computer={6}>
-                                {/* <Input placeholder='Search...' name="location" onChange={this.handleFormChange} /> */}
-                                {/* Currently only have functionality for lat/long based searches. Add location input later */}
+                                {this.props.search.locationOverride ? <Input placeholder='Location' name="location" onChange={this.handleFormChange} style={{border:"none", height:"2.6em"}} /> : ""}
                             </Grid.Column>
                             <Grid.Column mobile={8} tablet={8} computer={2} floated="right">
                                 <Button secondary onClick={this.onFormSubmit}>Search</Button>
