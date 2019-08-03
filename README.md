@@ -12,6 +12,7 @@ Run `yarn start` to start the Express server. Open another terminal window and r
 
 ## Issues / Features
 * Handle errors
+* Add roulette functionality
 * Organize project and clean up
 * Fix segment element's width on the search component on mobile
 * Fix link to Google Maps for international restaurants, not currently functional
