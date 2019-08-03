@@ -1,6 +1,8 @@
+import * as types from '../constants/ActionTypes'
+
 export default (state = [], action) => {
     switch (action.type) {
-        case 'FETCH_BUSINESSES':
+        case types.FETCH_BUSINESSES:
             return action.payload
         // case 'FETCH_BUSINESSES_FAILURE':
         //     return false

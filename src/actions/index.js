@@ -1,9 +1,10 @@
 import yelp from '../apis/yelp'
+import * as types from '../constants/ActionTypes'
 
 export const fetchBusinesses = (params) => {
     return async (dispatch) => {
         if (params.lat === null || params.long === null) {
-            console.log(dispatch({type: 'FETCH_BUSINESSES_FAILURE', payload: 'Something went wrong, fix it'}))
+            console.log(dispatch({type: types.FETCH_BUSINESSES_FAILURE, payload: 'Something went wrong, fix it'}))
         }
 
         try {
@@ -23,7 +24,7 @@ export const fetchBusinesses = (params) => {
                 }
             })
             
-            dispatch({ type: 'FETCH_BUSINESSES', payload: res.data })
+            dispatch({ type: types.FETCH_BUSINESSES, payload: res.data })
         } catch (err) {
             //TODO - need to actually handle this...
             console.log(err)
@@ -42,7 +43,7 @@ export const fetchBusiness = (id) => {
             }
         })
         
-        dispatch({ type: 'FETCH_BUSINESS', payload: res.data })
+        dispatch({ type: types.FETCH_BUSINESS, payload: res.data })
     }
 }
 
@@ -50,10 +51,10 @@ export const fetchCoords = () => {
     return async (dispatch) => {
         await window.navigator.geolocation.getCurrentPosition(
             position => {
-                dispatch({ type: 'FETCH_SEARCH', payload: { lat: position.coords.latitude, long: position.coords.longitude }})
+                dispatch({ type: types.FETCH_SEARCH, payload: { lat: position.coords.latitude, long: position.coords.longitude }})
             },
             err => {
-                dispatch({ type: 'SET_LOC_OVERRIDE' })
+                dispatch({ type: types.SET_LOC_OVERRIDE })
             }
         );
     }
@@ -69,6 +70,6 @@ export const fetchSearch = (params) => {
     })
     
     return async (dispatch) => {
-        dispatch({type:'FETCH_SEARCH', payload})
+        dispatch({type: types.FETCH_SEARCH, payload})
     }
 }

@@ -1,6 +1,8 @@
+import * as types from '../constants/ActionTypes'
+
 export default (state = {location:null, lat:null,long:null,categories:[],limit:15,offset:0}, action) => {
     switch (action.type) {
-        case 'FETCH_SEARCH':
+        case types.FETCH_SEARCH:
             let k = Object.keys(action.payload)
             let returnState = { ...state }
 
@@ -10,7 +12,7 @@ export default (state = {location:null, lat:null,long:null,categories:[],limit:1
             })
 
             return returnState
-        case 'SET_LOC_OVERRIDE':
+        case types.SET_LOC_OVERRIDE:
             return { ...state, locationOverride: true }
         default:
             return state
