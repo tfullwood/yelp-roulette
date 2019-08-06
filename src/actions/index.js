@@ -1,15 +1,12 @@
 import yelp from '../apis/yelp'
+//if project grows - descructure and only import what's necessary (do same with reducers)
 import * as types from '../constants/ActionTypes'
 
 export const fetchBusinesses = (params) => {
     return async (dispatch) => {
-        if (params.lat === null || params.long === null) {
-            console.log(dispatch({type: types.FETCH_BUSINESSES_FAILURE, payload: 'Something went wrong, fix it'}))
-        }
-
         try {
-            //TODO - call a dispatch here for FETCH_BUSINESSES_START
-                //Then set a isLoading value in the reducer. This would display a loading spinner to the user while the request is being made
+            dispatch({type: types.CLEAR_ERRORS})
+            dispatch({type: types.FETCH_BUSINESSES_REQUEST})
 
             const res = await yelp.get('/businesses', {
                 params: {
@@ -24,26 +21,27 @@ export const fetchBusinesses = (params) => {
                 }
             })
             
-            dispatch({ type: types.FETCH_BUSINESSES, payload: res.data })
-        } catch (err) {
-            //TODO - need to actually handle this...
-            console.log(err)
-            dispatch({ type: 'doabsolutelynothing' })
+            dispatch({ type: types.FETCH_BUSINESSES_SUCCESS, payload: res.data })
+        } catch (error) {
+            dispatch({ type: types.FETCH_BUSINESSES_FAILURE, payload: {error, message: 'Something happened when we tried to search for restaurants, please try again.'}})
         }
     }
 }
 
 export const fetchBusiness = (id) => {
-    //TODO - add try and catch blocks and handle exceptions
-
     return async (dispatch) => {
-        const res = await yelp.get('/business', {
-            params: {
-                id
-            }
-        })
-        
-        dispatch({ type: types.FETCH_BUSINESS, payload: res.data })
+        try {
+            dispatch({type: types.CLEAR_ERRORS})
+            dispatch({type: types.FETCH_BUSINESS_REQUEST})            
+
+            const res = await yelp.get('/business', {
+                params: { id }
+            })
+            
+            dispatch({ type: types.FETCH_BUSINESS_SUCCESS, payload: res.data })
+        } catch (error) {
+            dispatch({ type: types.FETCH_BUSINESS_FAILURE, payload: {error, message: 'Something happened looking up this restaurant, please try again.'}})
+        }
     }
 }
 
@@ -65,11 +63,24 @@ export const fetchSearch = (params) => {
     let k = Object.keys(params)
     
     //iterate through params and add to the payload
+    //doing this so I only have to pass necessary params when fetchSearch is called
     k.map((obj, i) => {
         return payload[k[i]] = params[obj]
     })
     
     return async (dispatch) => {
         dispatch({type: types.FETCH_SEARCH, payload})
+    }
+}
+
+export const clearErrors = () => {
+    return async (dispatch) => {
+        dispatch({type: types.CLEAR_ERRORS})
+    }
+}
+
+export const setError = (params) => {
+    return async (dispatch) => {
+        dispatch({type: types.SET_ERROR, payload: {message: params.message || 'Something went wrong'}})
     }
 }

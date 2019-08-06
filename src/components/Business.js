@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Divider, Header, Grid, Placeholder } from 'semantic-ui-react'
+import { Divider, Header, Grid, Placeholder, Icon } from 'semantic-ui-react'
 
 import { fetchBusiness } from '../actions'
 import Loader from './Loader'
 import Map from './Map'
 import history from '../history'
-
 import '../styles/Business.css'
 
 export class Business extends Component {
@@ -19,16 +18,25 @@ export class Business extends Component {
         this.props.fetchBusiness(encodeURI(id))
     }
 
-    renderPage = () => {
+    render() {
         const business = this.props.business
         
-
-        if (!business.id) {
+        if (business.isLoading) {
             return (
-                <Loader status={true} />
+                <div className="Business">
+                    <Loader status={true} />
+                </div>
             )
         }
-        
+
+        if (!business.id || this.props.errors) {
+            return (
+                <div style={{textAlign: "center", marginTop: "20px"}}>
+                    <Icon name="bomb" size="massive" />
+                </div>
+            )
+        }
+
         return (
             <div className="Business">
                 <Divider horizontal style={{paddingBottom: "1rem"}}>
@@ -65,18 +73,11 @@ export class Business extends Component {
             </div>
         )
     }
-
-    render() {
-        return (
-            <div>
-                {this.renderPage()}
-            </div>
-        )
-    }
 }
 
 const mapStateToProps = (state) => ({
-    business: state.business
+    business: state.business,
+    errors: state.errors
 })
 
 export default connect(

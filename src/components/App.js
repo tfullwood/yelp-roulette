@@ -8,7 +8,8 @@ import Business from './Business'
 import BusinessList from './BusinessList'
 import About from './About'
 import Contact from './Contact'
-import { fetchCoords, fetchBusinesses } from '../actions'
+import Error from './Error'
+import { fetchCoords, fetchBusinesses, setError } from '../actions'
 import history from '../history'
 
 class App extends Component {
@@ -18,8 +19,7 @@ class App extends Component {
 
     onSearchSubmit = (categories = []) => {
         if ((this.props.search.lat === null || this.props.search.long === null) && this.props.search.location == null) {
-            //TODO handle this more elegantly - set error state and display an error notification
-            return alert('Please allow location so we can find restaurants near you.');
+            return this.props.setError({message: 'Please add a location or allow us to view location so we can find restaurants near you'})
         }
 
         if (this.props.search.locationOverride) {
@@ -32,6 +32,8 @@ class App extends Component {
     render() {
         return (
             <div className="ui container">
+                {this.props.errors ? <Error /> : ''}
+
                 <Router history={history}>
                     <div>
                         <Header />
@@ -52,7 +54,8 @@ class App extends Component {
 const mapStateToProps = (state) => {
     return {
         businesses: state.businesses,
-        search: state.search
+        search: state.search,
+        errors: state.errors
     }
 }
 
@@ -60,6 +63,7 @@ export default connect(
     mapStateToProps,
     {
         fetchCoords,
-        fetchBusinesses
+        fetchBusinesses,
+        setError
     }
 )(App)

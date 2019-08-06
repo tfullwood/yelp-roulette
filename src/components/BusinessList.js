@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Divider, Header, Pagination } from 'semantic-ui-react'
+import { isEmpty } from 'lodash'
 
 import { fetchSearch, fetchBusinesses } from '../actions'
 import BusinessCard from './BusinessCard'
+import Loader from './Loader'
 
 class BusinessList extends Component {
     handlePaginationChange = (e, { activePage }) => {
@@ -20,7 +22,7 @@ class BusinessList extends Component {
 
     render() {
         let content
-        if (this.props.businesses.length === 0) {
+        if (isEmpty(this.props.businesses.businesses)) {
             content = (<Header as="h2" textAlign="center">Search Restaurants Above</Header>)
         } else {
             content = (
@@ -47,6 +49,7 @@ class BusinessList extends Component {
 
         return (
             <div>
+                <Loader status={this.props.businesses.isLoading} />
                 <Divider horizontal>
                     <Header as='h4'>Restaurants</Header>
                 </Divider>

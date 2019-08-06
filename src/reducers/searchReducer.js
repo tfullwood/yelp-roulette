@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes'
 
-const defaultState = {
+const INITIAL_STATE = {
     location: null,
     lat: null,
     long: null,
@@ -9,7 +9,7 @@ const defaultState = {
     offset: 0
 }
 
-export default (state = defaultState, action) => {
+export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case types.FETCH_SEARCH:
             let k = Object.keys(action.payload)
