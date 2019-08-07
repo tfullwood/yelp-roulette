@@ -7,8 +7,8 @@ const Header = () => {
     return (
         <div className="ui stackable container menu">
             <Link to="/">
-                <div className="header item">
-                    <img src={process.env.PUBLIC_URL + '/img/yelp-logo.png'} alt="Yelp" /> Roulette
+                <div className="header item" style={{height:"100%"}}>
+                    <img src={process.env.PUBLIC_URL + "/img/yelp-logo.png"} alt="Yelp" /> Roulette
                 </div>
             </Link>
             <div className="right menu">

@@ -11,10 +11,11 @@ import '../styles/Business.css'
 export class Business extends Component {
     componentDidMount() {
         const id = this.props.match.params.id
-        if (id === '') {
-            history.push('/')
-        }
 
+        if (id === 'undefined') {
+            history.push('/404')
+        }
+        
         this.props.fetchBusiness(encodeURI(id))
     }
 

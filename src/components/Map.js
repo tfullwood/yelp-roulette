@@ -24,22 +24,7 @@ class Map extends React.Component {
       zoom
     })
 
-    map.on('move', () => {
-      const { lng, lat } = map.getCenter()
-
-      this.setState({
-        lng: lng.toFixed(4),
-        lat: lat.toFixed(4),
-        zoom: map.getZoom().toFixed(2)
-      })
-    })
-
     map.on("load", () => {
-        this.setState({
-          lng: this.props.long.toFixed(4),
-          lat: this.props.lat.toFixed(4),
-          zoom: map.getZoom().toFixed(2)
-        })
         const { lng, lat } = map.getCenter()
 
         map.loadImage("https://i.imgur.com/MK4NUzI.png", function(error, image) {

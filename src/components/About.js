@@ -8,7 +8,7 @@ const About = () => {
                     <Header as='h2'>About</Header>
                 </Divider>
 
-            <p>A relatively simple React application for my portfolio. Built with React, Redux, and a small Express server. You can view the project source on <a target="_blank" rel="noopener noreferrer" href="https://github.com/tfullwood/yelp-roulette">Github</a>.</p>
+            <p>A relatively simple React application for my portfolio. Built with React, Redux, and a small Express server. You can view the project source on <a style={{color: "#4183c4"}} target="_blank" rel="noopener noreferrer" href="https://github.com/tfullwood/yelp-roulette">Github</a>.</p>
         </div>
     )
 }

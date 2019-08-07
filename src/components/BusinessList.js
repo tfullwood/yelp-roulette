@@ -32,10 +32,11 @@ class BusinessList extends Component {
                             return <BusinessCard key={business.id} business={business} />
                         }))}
                     </div>
-                    <div style={{textAlign:"right"}}>
+                    <div style={{textAlign:"right", marginBottom: "20px"}}>
                         <Pagination
                             boundaryRange={0}
-                            defaultActivePage={1}
+                            //Semantic page management wasn't working so had to manage it myself
+                            activePage={((this.props.search.offset / 15) + 1) || 1}
                             ellipsisItem={null}
                             lastItem={null}
                             siblingRange={1}

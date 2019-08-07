@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Dropdown, Button, Grid, Segment, Form, Input } from 'semantic-ui-react'
 
-import { fetchSearch } from '../actions'
-//Pulling this data locally, unnecessary to call Yelp API for data that rarely changes
+import { fetchBusinesses, fetchSearch, fetchRoulette, setError } from '../actions'
+//Pulling this data locally, unnecessary to call Yelp API for data that almost never changes
 import categories from '../apis/yelpCategories.json'
-
 import '../styles/Search.css'
 import history from '../history'
 
@@ -13,7 +12,7 @@ export class Search extends Component {
     constructor(props) {
         super(props)
 
-        //No need to store in redux, only used on this component
+        //No need to store this in redux, only used on this component
         this.state = { catList: [] }
     }
 
@@ -36,8 +35,19 @@ export class Search extends Component {
         this.setState({catList})
     }
     
-    rouletteOnClick = () => {
-        return alert("I haven't build this yet...")
+    rouletteOnClick = async (categories = []) => {
+        if ((this.props.search.lat === null || this.props.search.long === null) && this.props.search.location == null) {
+            return this.props.setError({message: 'Please add a location or allow us to view location so we can find restaurants near you'})
+        }
+
+        //This needs a refactor, its awful but I'm bored with this project now
+        if (this.props.search.locationOverride) {
+            await this.props.fetchRoulette({term: 'restaurant', location: this.props.search.location, categories: this.props.search.categories.join(',')})
+        } else {
+            await this.props.fetchRoulette({term: 'restaurant', lat: this.props.search.lat, long: this.props.search.long, categories: this.props.search.categories.join(',')})
+            
+            history.push(`/business/${this.props.business.id}`)
+        }
     }
 
     handleFormChange = (e, { name, value }) => {
@@ -46,14 +56,25 @@ export class Search extends Component {
 
     onFormSubmit = (e) => {
         e.preventDefault()
-        this.props.onSearchSubmit(this.props.search.categories)
+        let categories = this.props.search.categories || []
+
+        if ((this.props.search.lat === null || this.props.search.long === null) && this.props.search.location == null) {
+            return this.props.setError({message: 'Please add a location or allow us to view location so we can find restaurants near you'})
+        }
+
+        if (this.props.search.locationOverride) {
+            this.props.fetchBusinesses({term: 'restaurant', location: this.props.search.location, categories: categories.join(',')})
+        } else {
+            this.props.fetchBusinesses({term: 'restaurant', lat: this.props.search.lat, long: this.props.search.long, categories: categories.join(',')})
+        }
+
         history.push('/')
     }
 
     render() {
         return (
             <div className="x-search">
-                <Form onSubmit={this.onFormSubmit}>
+                <Form>
                     <Segment>
                         <Grid>
                             <Grid.Column mobile={16} tablet={8} computer={6}>
@@ -78,10 +99,15 @@ export class Search extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        search: state.search
+        business: state.business,
+        search: state.search,
+        errors: state.errors
     }
 }
 
 export default connect(mapStateToProps, {
-    fetchSearch
+    fetchBusinesses,
+    fetchRoulette,
+    fetchSearch,
+    setError
 })(Search)

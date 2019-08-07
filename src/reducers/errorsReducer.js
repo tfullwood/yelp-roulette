@@ -7,6 +7,7 @@ export default (state = null, action) => {
         case types.SET_ERROR:
         case types.FETCH_BUSINESS_FAILURE:
         case types.FETCH_BUSINESSES_FAILURE:
+        case types.FETCH_ROULETTE_FAILURE:
             return {
                 message: action.payload.message || 'Something went wrong, please try again'
             }

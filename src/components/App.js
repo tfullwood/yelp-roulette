@@ -8,25 +8,14 @@ import Business from './Business'
 import BusinessList from './BusinessList'
 import About from './About'
 import Contact from './Contact'
+import Page404 from './Page404'
 import Error from './Error'
-import { fetchCoords, fetchBusinesses, setError } from '../actions'
+import { fetchCoords, setError } from '../actions'
 import history from '../history'
 
 class App extends Component {
     componentDidMount() {
         this.props.fetchCoords()
-    }
-
-    onSearchSubmit = (categories = []) => {
-        if ((this.props.search.lat === null || this.props.search.long === null) && this.props.search.location == null) {
-            return this.props.setError({message: 'Please add a location or allow us to view location so we can find restaurants near you'})
-        }
-
-        if (this.props.search.locationOverride) {
-            this.props.fetchBusinesses({term: 'restaurant', location: this.props.search.location, categories: this.props.search.categories.join(',')})
-        } else {
-            this.props.fetchBusinesses({term: 'restaurant', lat: this.props.search.lat, long: this.props.search.long, categories: this.props.search.categories.join(',')})
-        }
     }
 
     render() {
@@ -37,12 +26,14 @@ class App extends Component {
                 <Router history={history}>
                     <div>
                         <Header />
-                        <Search onSearchSubmit={this.onSearchSubmit} />
+                        <Search />
                         <Switch>
                             <Route path="/" exact component={BusinessList} onSearchSubmit={this.onSearchSubmit} />
                             <Route path="/business/:id" exact component={Business} />
                             <Route path="/about" exact component={About} />
                             <Route path="/contact" exact component={Contact} />
+                            <Route path="/404" exact component={Page404} />
+                            <Route component={Page404} />
                         </Switch>
                     </div>
                 </Router>
@@ -63,7 +54,6 @@ export default connect(
     mapStateToProps,
     {
         fetchCoords,
-        fetchBusinesses,
         setError
     }
 )(App)

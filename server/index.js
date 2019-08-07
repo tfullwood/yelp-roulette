@@ -6,9 +6,9 @@ require('dotenv').config()
 
 var app = express()
 app.use(cors())
+const PORT = process.env.PORT || 3001
 
 app.all('/*', function(req, res, next) {
-    //Will likely need to set some headers
     res.setHeader("Access-Control-Allow-Origin", "*")
     next()
 })
@@ -74,4 +74,6 @@ app.get('/business', async function(req, res) {
     }
 })
 
-app.listen(3001)
+app.listen(PORT, () => {
+    console.log(`listening on ${PORT}`);
+})

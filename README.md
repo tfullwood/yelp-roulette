@@ -11,18 +11,13 @@ Navigate to project root and run `yarn install` to download dependencies. Rename
 Run `yarn start` to start the Express server. Open another terminal window and run `yarn start` from the project root to start the React app. The React app should now be available at [http://localhost:3000](http://localhost:3000) and the Express server at [http://localhost:3001](http://localhost:3001).
 
 ## Issues / Features
-* Handle errors
-* Add roulette functionality
-* Organize project and clean up
 * Fix segment element's width on the search component on mobile
 * Fix link to Google Maps for international restaurants, not currently functional
-* Fix bug with the Mapbox component state, it persists the previous map coords
 
 ### Future
 * Add tests
 * Add location functionality (either lat/long or location searches)
 * Considering adding hours / is open and additional detail to the Business component
-* Add loading spinner on search
 
 ## Built With
 * [Create React App](https://github.com/facebook/create-react-app)
